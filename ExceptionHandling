@@ -1,0 +1,27 @@
+pipeine
+{
+	agent any
+	stages
+	{
+		stage('ContinuousDownload')
+		{
+			steps
+			{
+			    script
+			    {
+			        try
+			        {
+			            	git 'https://github.com/intelliqittrainings/maven.git'
+			        }
+			        catch(Exception ex1)
+			        {
+			            mail bcc: '', body: '''Hi,
+
+                        Please provide permissions''', cc: '', from: '', replyTo: '', subject: 'Unable to download the code from github', to: 'polisettytharak@hotmail.com'
+                        exit(1)
+			        }
+			    }
+			}
+		}
+	}
+}
